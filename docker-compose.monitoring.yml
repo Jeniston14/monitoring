@@ -1,0 +1,65 @@
+ersion: '3.8'
+services:
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.47.1
+    container_name: cadvisor-monitoring
+    privileged: true
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /cgroup:/cgroup:ro
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    networks:
+      - monitoring
+    mem_limit: ${CADVISOR_MEM_LIMIT}
+    mem_reservation: ${CADVISOR_MEM_RESERVATION}
+    labels:
+      org.label-schema.group: "monitoring"
+
+  node-exporter:
+    image: prom/node-exporter
+    container_name: node-exporter-monitoring
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - --path.procfs=/host/proc
+      - --path.sysfs=/host/sys
+      - --collector.filesystem.ignored-mount-points
+      - ^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)
+    restart: unless-stopped
+    ports:
+      - 9100:9100
+    networks:
+      - monitoring
+
+  nginx-exporter:
+    image: nginx/nginx-prometheus-exporter:latest
+    container_name: nginx-exporter-monitoring
+    restart: unless-stopped
+    environment:
+      - SCRAPE_URI=http://172.21.0.7/nginx_stats
+      - TELEMETRY_PATH=/metrics
+      - NGINX_RETRIES=5
+    ports:
+      - 9113:9113
+    networks:
+      - monitoring
+    mem_limit: ${CADVISOR_MEM_LIMIT}
+    mem_reservation: ${CADVISOR_MEM_RESERVATION}
+
+networks:
+  monitoring:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: "monitoring"
+    name: monitoringnetwork
+    ipam:
+      config:
+        - subnet: 172.22.0.0/16
