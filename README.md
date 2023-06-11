@@ -1,4 +1,4 @@
-  /etc/prometheus/
+/etc/prometheus/
 
 - job_name: "cadvisor-monitoring"
     file_sd_configs:
