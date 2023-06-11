@@ -24,4 +24,17 @@ target-hosts-format:
   labels:
     job: cadvisor-monitoring
     instance: <instance-name>
+    
+- targets: ['ip:9113']
+  labels:
+    service: web
+    job: nginx-exporter
+    instance: <instance-name>
+    
+- targets: ['ip:9100']
+  labels:
+    service: infra
+    job: node-exporter
+    instance: <instance-name>
+
 
