@@ -1,4 +1,4 @@
-Node , nginx exporters and cadvisor for monitoring containers \
+Node , nginx exporters and cadvisor for monitoring docker containers \
 Custom template for Telegram reciver Alertmanager
 -
 docker-compose.monitoring.yml -> for agent (VM) clients \
