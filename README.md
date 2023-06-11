@@ -1,3 +1,6 @@
+Node , nginx , cadvisor exportes for monitoring containers
+---
+
 docker-compose.monitoring.yml -> for agent (VM) clients \
 alertmanager.yml -> config for Alertmanager \
 telegram.tmpl -> template Alertmanager, telegram reciver \
