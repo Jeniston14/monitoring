@@ -1,4 +1,5 @@
-Node , nginx exporters and cadvisor for monitoring containers \ 
+Node , nginx exporters and cadvisor for monitoring containers
+
 Custom template for Telegram reciver Alertmanager
 ---
 
