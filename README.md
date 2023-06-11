@@ -1,4 +1,6 @@
-  - job_name: "cadvisor-monitoring"
+  /etc/prometheus/
+
+- job_name: "cadvisor-monitoring"
     file_sd_configs:
       - files:
         - /etc/prometheus/targets-hosts-cadvisor.yml
@@ -13,12 +15,9 @@
       - files:
         - /etc/prometheus/targets-hosts-node-exporter.yml
 
-
-/etc/prometheus/
-
+--
 
 cat targets-hosts-cadvisor.yml
----
 - targets: ['ip:8080']
   labels:
     job: cadvisor-monitoring
