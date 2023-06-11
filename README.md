@@ -3,5 +3,5 @@ alertmanager.yml -> config for Alertmanager \
 telegram.tmpl -> template Alertmanager, telegram reciver \
 jobs-format-and-sd-configs -> format config file for Prometheus config \
 nginx.conf -> example nginx stub config \
-hardcorde-fiy -> hardocde config for SCRAPE_URI nginx-exporter
+hardcorde-fiy -> hardcode config for SCRAPE_URI nginx-exporter
 
