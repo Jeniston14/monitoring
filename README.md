@@ -1,6 +1,6 @@
-docker-compose.monitoring.yml -> from agent (VM) clients \
+docker-compose.monitoring.yml -> for agent (VM) clients \
 alertmanager.yml -> config for Alertmanager \
-telegram.tmpl -> template Alertmanager telegram reciver \
-jobs-format-and-sd-configs -> format config file \
-nginx.conf 
+telegram.tmpl -> template Alertmanager, telegram reciver \
+jobs-format-and-sd-configs -> format config file for Prometheus config \
+nginx.conf -> example nginx stub config
 
