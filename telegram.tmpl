@@ -1,0 +1,17 @@
+{{ define "telegram.message" }}
+{{if eq .Status "firing"}}
+🔥WARNING
+{{end -}}
+{{if eq .Status "resolved"}}
+✅RESOLVED
+{{end }}
+{{ range .Alerts }}
+Alert: 🚨{{ .Labels.alertname }}
+StartTime: {{ .StartsAt}}
+{{- if .EndsAt }}
+EndTime: {{ .EndsAt}}
+{{- end }}
+Description: {{ .Annotations.description }}
+Summary: {{ .Annotations.summary }}
+{{ end }}
+{{ end }}
